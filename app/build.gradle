@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: com.aitsuki.buildsrc.FixPlugin
+
+fixMode {
+    debugOn = true  // 是否注入代码
+    generatePatch = true    // 是否自动生成补丁
+    patchDir = "D:\\hotfix" // 补丁保存的目录
+    patchName = "patch.jar" // 补丁的名字
+}
+
+fixSignConfig {
+    storeFile = new File(rootDir,"aitsuki.jks")
+    storePassword = "123456"
+    keyAlias = "aitsuki"
+    keyPassword = "123456"
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.aitsuki.hotfix"
+        minSdkVersion 8
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile project(':fix')
+}
