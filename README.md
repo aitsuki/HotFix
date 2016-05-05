@@ -8,6 +8,7 @@
 
 项目演示
 
+![image](https://github.com/AItsuki/HotFix/raw/master/image/Demo.gif)
 
 # 二、使用方式
 首先在build.gradle中有两个dsl需要进行配置。
