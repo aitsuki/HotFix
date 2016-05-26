@@ -79,7 +79,7 @@ public class FixUtils {
             classPool.appendClassPath(apacheJar)
         }
 
-        def libPath = project.project(":hack").buildDir.absolutePath.concat("\\intermediates\\classes\\debug")
+        def libPath = project.rootDir.absolutePath.concat("\\antilazy.jar")
         classPool.appendClassPath(libPath)
     }
 
